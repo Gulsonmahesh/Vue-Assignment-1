@@ -11,7 +11,7 @@
                 <label for="bookyear" class="mr-1">Enter Publication Year</label>
                 <input v-model.trim="bookyear" type="number" min="1000" max="9999" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;" class="form-control" id="bookyear" placeholder="Published Year" />
             </div>
-            <button @click="addbook" class="btn btn-primary">Submit</button>
+            <button @click.prevent="addbook" class="btn btn-primary">Submit</button>
         </form>        
       </div>
     </div>
@@ -34,6 +34,7 @@ export default {
       } else {
       const bookData = [this.bookname, this.bookyear];
       this.$emit('addbook', bookData);
+      this.bookname = this.bookyear = null;
       }
       
     }
